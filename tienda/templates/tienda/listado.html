@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado</title>
-</head>
-<body>
-    prueba
-</body>
-</html>
+{% extends 'tienda/base.html' %}
+{% block content %}
+    <button type="button" class="btn btn-primary">Añadir producto</button>
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Precio</th>
+            <th>Opciones</th>
+        </tr>
+        {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.modelo }}</td>
+                    <td>{{ producto.marca }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary">Editar</button>
+                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

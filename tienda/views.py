@@ -6,12 +6,22 @@ def welcome(request):
     return render(request,'tienda/index.html', {})
 
 def listado(request):
-    return render(request, 'tienda/listado.html', {})
+    productos = Producto.objects.all();
+    return render(request, 'tienda/listado.html', {'productos':productos})
+
+"""
+Crear vista para detalle del producto. Pasarle Producto y pk
+
+producto = get_object_or_404(Producto, pk=pk)
+
+crear forms.py para hacer el formulario de edicion de producto
+
+añadir vista para nuevo y eliminar
+"""
 
 
 
-def book_list(request):
-    productos = Producto.objects.order_by('nombre')
-    return render('listado.html', {'productos': productos})
+
+
 
 
