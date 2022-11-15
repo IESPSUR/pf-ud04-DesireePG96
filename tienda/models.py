@@ -13,9 +13,9 @@ class Marca(models.Model):
 class Producto(models.Model):
     nombre = models.CharField(max_length=30)
     modelo = models.CharField(max_length=30)
-    unidades = models.IntegerField
+    unidades = models.IntegerField("Unidades")
     precio = models.DecimalField(max_digits=10,decimal_places=2)
-    detalles = models.CharField(max_length=500, blank=True)
+    detalles = models.CharField(max_length=500)
     marca = models.ForeignKey(Marca, models.PROTECT)
 
     def __str__(self):

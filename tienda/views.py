@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from tienda.models import Producto
 from .forms import ProductoForm
 
@@ -12,6 +12,7 @@ def listado(request):
 
 
 def nuevo(request):
+
     form = ProductoForm(request.POST)
     if request.method == 'POST':
 
@@ -21,7 +22,7 @@ def nuevo(request):
                                 modelo=form.cleaned_data['modelo'],
                                 unidades=form.cleaned_data['unidades'],
                                 precio=form.cleaned_data['precio'],
-                                detalle=form.cleaned_data['detalle'],
+                                detalles=form.cleaned_data['detalles'],
                                 marca=form.cleaned_data['marca'])
             producto.save()
 
@@ -46,7 +47,21 @@ añadir vista para nuevo y eliminar
 
 """
 def editar(request, pk):
-    return render(request, 'tienda/editar.html')
+
+    producto = get_object_or_404(Producto, pk=pk)
+    form = ProductoForm(request.POST)
+    if request.method == 'POST':
+
+        if form.is_valid():
+            producto.save()
+
+            return redirect('listado')
+
+        else:
+            form = ProductoForm()
+            return redirect('listado')
+
+    return render(request, 'tienda/editar.html', {'form': form})
 
 """
 Pasos para realizar la compra:
