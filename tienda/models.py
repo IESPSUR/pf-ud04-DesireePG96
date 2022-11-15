@@ -1,4 +1,7 @@
 from django.db import models
+from django.forms import ModelForm
+from django.forms import forms
+
 
 # Create your models here.
 class Marca(models.Model):
@@ -25,6 +28,7 @@ class Compra(models.Model):
     fecha = models.DateField
     unidades = models.IntegerField
     importe = models.DecimalField(max_digits=10,decimal_places=2)
+
 
 
 

@@ -1,7 +1,7 @@
 {% extends 'tienda/base.html' %}
 {% block content %}
-    <button type="button" class="btn btn-primary">Añadir producto</button>
-    <table class="table">
+    <a href="{% url "nuevo" %}"><button type="button" class="btn btn-primary">Añadir producto</button></a>
+    <table class="table table-striped">
         <tr>
             <th>Nombre</th>
             <th>Modelo</th>
@@ -16,7 +16,7 @@
                     <td>{{ producto.marca }}</td>
                     <td>{{ producto.precio }}</td>
                     <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
+                        <a href="/tienda/admin/editar"><button type="button" class="btn btn-secondary">Editar</button></a>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
