@@ -1,17 +1,17 @@
 {% extends 'tienda/base.html' %}
 {% block content %}
 
-    <form enctype="multipart/form-data" method="post">
+    <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {% for campo in form %}
             <div>
                 <label>
                     {{ campo.label }}:
-                    <input value="{{ campo.value | default:'' }}" name="{{ campo.name }}">
+                    <input value="{{ campo.value | default:'' }}" name="{{ campo.name }}" step="any">
                 </label>
             </div>
         {% endfor %}
-        <input type="submit" class="btn btn-primary" value="Confirmar">
+        <input type="submit" class="btn btn-primary" value="Añadir producto">
     </form>
 
 {% endblock %}

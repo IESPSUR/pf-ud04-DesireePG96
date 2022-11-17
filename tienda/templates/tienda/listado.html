@@ -6,6 +6,7 @@
             <th>Nombre</th>
             <th>Modelo</th>
             <th>Marca</th>
+            <th>Unidades</th>
             <th>Precio</th>
             <th>Opciones</th>
         </tr>
@@ -14,8 +15,8 @@
                     <td>{{ producto.nombre }}</td>
                     <td>{{ producto.modelo }}</td>
                     <td>{{ producto.marca }}</td>
-                    <td>{{ producto.precio }}</td>
                     <td>{{ producto.unidades }}</td>
+                    <td>{{ producto.precio }}</td>
                     <td>
                         <a href="{% url 'editar' producto.pk %}"><button type="button" class="btn btn-secondary">Editar</button></a>
                         <button type="button" class="btn btn-danger">Eliminar</button>

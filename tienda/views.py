@@ -10,12 +10,11 @@ def listado(request):
     productos = Producto.objects.all();
     return render(request, 'tienda/listado.html', {'productos':productos})
 
-
 def nuevo(request):
+    form = ProductoForm(request.POST or None)
 
-    form = ProductoForm(request.POST)
     if request.method == 'POST':
-
+        print(form.is_valid(), form.errors)
         if form.is_valid():
 
             producto = Producto(nombre=form.cleaned_data['nombre'],
@@ -29,7 +28,6 @@ def nuevo(request):
             return redirect('listado')
 
         else:
-            form = ProductoForm()
             return redirect('listado')
 
     return render(request, 'tienda/nuevo.html', {'form':form})
@@ -46,22 +44,29 @@ crear forms.py para hacer el formulario de edicion de producto
 añadir vista para nuevo y eliminar
 
 """
+
 def editar(request, pk):
 
     producto = get_object_or_404(Producto, pk=pk)
-    form = ProductoForm(request.POST)
+    form = ProductoForm(request.POST or None, instance=producto)
     if request.method == 'POST':
-
+        print(form.is_valid(), form.errors)
         if form.is_valid():
-            producto.save()
+            form.save()
 
             return redirect('listado')
 
         else:
-            form = ProductoForm()
             return redirect('listado')
 
     return render(request, 'tienda/editar.html', {'form': form})
+
+def eliminar(request, pk):
+
+    producto = get_object_or_404(Producto, pk=pk)
+    form = ProductoForm(request.POST or None, instance=producto)
+
+
 
 """
 Pasos para realizar la compra:
@@ -72,6 +77,10 @@ en vistas crear tienda productos (coge los productos y crea el compra form vacio
 
 transacciones de forma atomica
 vista de checkout
+"""
+
+"""
+
 """
 
 
