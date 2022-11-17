@@ -1,0 +1,26 @@
+{% extends 'tienda/base.html' %}
+{% block content %}
+    <form action="{% url 'checkout' pk=producto.id %}" method="post">
+        {% csrf_token %}
+        <table class="table table-striped">
+            <tr>
+                <th>Producto</th>
+                <th>Modelo</th>
+                <th>Marca</th>
+                <th>Detalles</th>
+                <th>Unidades</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.modelo }}</td>
+                <td>{{ producto.marca }}</td>
+                <td>{{ producto.detalles }}</td>
+                <td>{{ unidades }}</td>
+                <td>{{ total }} €</td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit" class="btn btn-primary">Finalizar compra</button>
+    </form>
+{% endblock %}
