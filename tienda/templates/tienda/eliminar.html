@@ -1,0 +1,14 @@
+{% extends 'tienda/base.html' %}
+{% block content %}
+     <center>
+        <form action="{% url 'eliminar' pk=producto.id %}" method="post">
+            {% csrf_token %}
+            <div>
+                ¿Desea eliminar el producto: {{ producto.nombre }}?
+                <br>
+                <input type="submit" value="Eliminar" class="btn btn-danger">
+                <button style="border: none; background-color: white"><a class="btn btn-primary" href="{% url 'listado' %}">Cancelar</a></button>
+            </div>
+        </form>
+    </center>
+{% endblock %}

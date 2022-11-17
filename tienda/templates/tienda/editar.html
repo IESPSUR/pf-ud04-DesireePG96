@@ -1,9 +1,14 @@
 {% extends 'tienda/base.html' %}
 {% block content %}
-    <form action="{% url 'editar' producto.pk %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-
-        <input type="submit" value="Confirmar cambios" class="btn btn-primary">
-    </form>
+     <center>
+        <form action="{% url 'editar' pk=producto.id %}" method="post">
+            {% csrf_token %}
+            <div>
+                {{ form }}
+                <br>
+                <br>
+                <input type="submit" value="Confirmar cambios" class="btn btn-primary">
+            </div>
+        </form>
+    </center>
 {% endblock %}

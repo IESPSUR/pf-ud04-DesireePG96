@@ -32,19 +32,6 @@ def nuevo(request):
 
     return render(request, 'tienda/nuevo.html', {'form':form})
 
-
-
-"""
-Crear vista para detalle del producto. Pasarle Producto y pk
-
-producto = get_object_or_404(Producto, pk=pk)
-
-crear forms.py para hacer el formulario de edicion de producto
-
-añadir vista para nuevo y eliminar
-
-"""
-
 def editar(request, pk):
 
     producto = get_object_or_404(Producto, pk=pk)
@@ -59,12 +46,18 @@ def editar(request, pk):
         else:
             return redirect('listado')
 
-    return render(request, 'tienda/editar.html', {'form': form})
+    return render(request, 'tienda/editar.html', {'form': form, 'producto': producto})
 
 def eliminar(request, pk):
 
     producto = get_object_or_404(Producto, pk=pk)
-    form = ProductoForm(request.POST or None, instance=producto)
+
+    if request.method == 'POST':
+
+        producto.delete()
+        return redirect('listado')
+
+    return render(request, 'tienda/eliminar.html', {'producto': producto})
 
 
 
@@ -77,10 +70,6 @@ en vistas crear tienda productos (coge los productos y crea el compra form vacio
 
 transacciones de forma atomica
 vista de checkout
-"""
-
-"""
-
 """
 
 
