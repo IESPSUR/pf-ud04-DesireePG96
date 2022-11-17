@@ -1,3 +1,9 @@
+{% extends 'tienda/base.html' %}
 {% block content %}
-    {% include 'tienda/form.html' %}
+    <form action="{% url 'nuevo' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+
+        <input type="submit" value="Añadir producto" class="btn btn-primary">
+    </form>
 {% endblock %}
