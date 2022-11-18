@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from tienda.models import Producto
-from .forms import ProductoForm
+from .forms import ProductoForm, CompraForm
+
 
 # Create your views here.
 def welcome(request):
@@ -75,14 +76,16 @@ vista de checkout
 def compra(request):
     productos = Producto.objects.all();
     busqueda = request.GET.get('datoBusqueda')
+    """
     unidades = request.POST.get('unidades')
+    """
 
     if busqueda:
         encontrado = productos.filter(nombre__icontains = busqueda)
         return render(request, 'tienda/compra.html', {'productos': encontrado})
 
     if request.method == 'POST':
-        return render(request, 'tienda/checkout.html', {'unidades':unidades, })
+        return render(request, 'tienda/checkout.html', {'productos': productos,})
 
 
 
@@ -91,19 +94,20 @@ def compra(request):
 def checkout(request, pk):
 
     producto = get_object_or_404(Producto, pk=pk)
-    unidades = request.GET.get('unidades')
-    print(unidades)
-    print(type(unidades))
-    total = float(unidades) * float(producto.precio);
+    form = CompraForm(request.POST or None)
+    total = float(producto.precio);
 
     if request.method == 'POST':
+        print(form.is_valid(), form.errors)
+        if form.is_valid():
+            print("Entra en el if")
+            unidRestante = producto.unidades
+            producto.unidades = unidRestante
+            producto.save()
+            return redirect('compra')
 
-        unidRestante = producto.unidades - unidades
-        producto.unidades = unidRestante
-        producto.save()
-        return redirect('compra')
+    return render(request, 'tienda/checkout.html', {'form': form, 'producto':producto, 'total':total})
 
-    return render(request, 'tienda/checkout.html', {'producto':producto, 'unidades':unidades, 'total':total})
 
 
 

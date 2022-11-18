@@ -10,7 +10,7 @@
         <tr>
             <th>Nombre</th>
             <th>Marca</th>
-            <th>Unidades</th>
+            <th>Stock</th>
             <th>Precio</th>
             <th></th>
         </tr>
@@ -19,13 +19,13 @@
                     <td>{{ producto.nombre }}</td>
                     <td>{{ producto.marca }}</td>
                     <td>{{ producto.unidades }}</td>
-                    <td>{{ producto.precio }}</td>
+                    <td>{{ producto.precio }} €</td>
                     <td>
-                        <form action="{% url 'checkout' pk=producto.id %}" method="get">
+                        <form action="{% url 'checkout' producto.pk %}" method="post">
                             {% csrf_token %}
-                            <label>Unidades:
+                            <!--<label>Unidades:
                                 <input name="unidades" type="number" value="1">
-                            </label>
+                            </label>-->
                             <button type="submit" class="btn btn-primary">Añadir al carrito</button>
                         </form>
                     </td>

@@ -1,4 +1,5 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, Form
+from django import forms
 from .models import Producto
 
 class ProductoForm(ModelForm):
@@ -7,5 +8,5 @@ class ProductoForm(ModelForm):
         model = Producto
         fields = "__all__"
 
-
-
+class CompraForm(Form):
+    unidades = forms.IntegerField(required=True, min_value=1)
