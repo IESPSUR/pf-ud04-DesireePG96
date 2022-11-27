@@ -1,0 +1,27 @@
+{% extends 'tienda/base.html' %}
+{% block content %}
+    <table class="table table-striped">
+        <tr>
+            <th>Nombre</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Unidades vendidas</th>
+        </tr>
+        {% for compra in compras %}
+            {% for producto in productos %}
+                {% if producto.id == compra.producto_id %}
+                <tr>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.modelo }}</td>
+                        <td>{{ producto.marca }}</td>
+                        <td>{{ producto.unidades }}</td>
+                        <td>{{ producto.precio }}</td>
+                        <td>{{ compra.cantidad }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+{% endblock %}

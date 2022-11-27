@@ -1,0 +1,31 @@
+{% extends 'tienda/base.html' %}
+{% block content %}
+ <form action="{% url 'compraUsuario' %}" method="get">
+        {% csrf_token %}
+        <select name="datoBusqueda">
+            <option value="" selected></option>
+            {% for user in usuario %}
+                <option value="{{ user.username }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-info">Seleccionar usuario</button>
+    </form>
+    <table class="table table-striped">
+        <tr>
+            <th>Usuario</th>
+            <th>Fecha</th>
+            <th>Unidades</th>
+            <th>Importe</th>
+            <th>Producto</th>
+        </tr>
+        {% for compra in compras %}
+                <tr>
+                    <td>{{ compra.user }}</td>
+                    <td>{{ compra.fecha }}</td>
+                    <td>{{ compra.unidades }}</td>
+                    <td>{{ compra.importe }} €</td>
+                    <td>{{ compra.producto }}</td>
+                </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

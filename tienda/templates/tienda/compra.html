@@ -1,7 +1,7 @@
 {% extends 'tienda/base.html' %}
 {% block content %}
     <br>
-    <form action="{% url 'compra' %}" method="post">
+    <form action="{% url 'compra' %}" method="get">
         {% csrf_token %}
         <input name="datoBusqueda" type="text" placeholder="nombre del producto">
         <button type="submit" class="btn btn-info">Buscar</button>

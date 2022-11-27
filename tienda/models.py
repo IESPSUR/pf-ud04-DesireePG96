@@ -24,9 +24,9 @@ class Producto(models.Model):
 class Compra(models.Model):
 
     producto = models.ForeignKey(Producto, models.PROTECT)
-    #user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-    fecha = models.DateField
-    unidades = models.IntegerField
+    user = models.CharField(max_length=30)
+    fecha = models.DateField('Fecha')
+    unidades = models.IntegerField('Unidades')
     importe = models.DecimalField(max_digits=10,decimal_places=2)
 
 

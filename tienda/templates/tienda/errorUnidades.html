@@ -1,0 +1,7 @@
+{% extends 'tienda/base.html' %}
+{% block content %}
+    <center>
+        <h2>Ha intentado comprar más unidades de las que hay disponibles en stock.</h2>
+        <a href="{% url 'compra' %}">Volver a elegir el producto</a>
+    </center>
+{% endblock %}

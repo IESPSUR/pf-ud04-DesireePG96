@@ -2,6 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('tienda/informes/topClientes', views.topClientes, name='topClientes'),
+    path('tienda/informes/topProductos', views.topProductos, name='topProductos'),
+    path('tienda/informes/compraUsuario', views.compraUsuario, name='compraUsuario'),
+    path('tienda/informes/marca', views.informeMarca, name='porMarca'),
+    path('tienda/informes', views.informes, name='informes'),
+    path('tienda/checkout/error', views.error, name='error'),
     path('tienda/checkout/<int:pk>', views.checkout, name='checkout'),
     path('tienda/compra', views.compra, name='compra'),
     path('tienda/admin/listado/', views.listado, name='listado'),

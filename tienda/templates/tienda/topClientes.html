@@ -1,0 +1,19 @@
+{% extends 'tienda/base.html' %}
+{% block content %}
+    <table class="table table-striped">
+        <tr>
+            <th>Nombre</th>
+            <th>Importe gastado</th>
+        </tr>
+        {% for compra in compras %}
+            {% for cliente in clientes %}
+                {% if cliente.username == compra.user %}
+                <tr>
+                        <td>{{ compra.user }}</td>
+                        <td>{{ compra.importeTotal }} €</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+{% endblock %}
