@@ -1,6 +1,6 @@
 {% extends 'tienda/base.html' %}
 {% block content %}
-    <form action="{% url 'checkout' producto.pk %}" method="post">
+    <form action="" method="post">
         {% csrf_token %}
         <table class="table table-striped">
             <tr>
@@ -16,7 +16,7 @@
                 <td>{{ producto.modelo }}</td>
                 <td>{{ producto.marca }}</td>
                 <td>{{ producto.detalles }}</td>
-                <td>{{ form.unidades }}</td>
+                <td>{{ unidades }}</td>
                 <td>{{ total }} €</td>
             </tr>
         </table>

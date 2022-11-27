@@ -1,7 +1,7 @@
 {% extends 'tienda/base.html' %}
 {% block content %}
     <br>
-    <form action="{% url 'compra' %}" method="get">
+    <form action="{% url 'compra' %}" method="post">
         {% csrf_token %}
         <input name="datoBusqueda" type="text" placeholder="nombre del producto">
         <button type="submit" class="btn btn-info">Buscar</button>
@@ -21,11 +21,11 @@
                     <td>{{ producto.unidades }}</td>
                     <td>{{ producto.precio }} €</td>
                     <td>
-                        <form action="{% url 'checkout' producto.pk %}" method="post">
+                        <form action="{% url 'checkout' producto.pk %}" method="get">
                             {% csrf_token %}
-                            <!--<label>Unidades:
+                            <label>Unidades:
                                 <input name="unidades" type="number" value="1">
-                            </label>-->
+                            </label>
                             <button type="submit" class="btn btn-primary">Añadir al carrito</button>
                         </form>
                     </td>
